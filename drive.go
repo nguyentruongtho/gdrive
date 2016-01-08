@@ -2,10 +2,9 @@ package main
 
 import (
 	"fmt"
-	"github.com/prasmussen/gdrive/cli"
-	"github.com/prasmussen/gdrive/gdrive"
-	"github.com/prasmussen/gdrive/util"
-	"github.com/prasmussen/google-api-go-client/googleapi"
+	"github.com/nguyentruongtho/gdrive/cli"
+	"github.com/nguyentruongtho/gdrive/gdrive"
+	"github.com/nguyentruongtho/gdrive/util"
 	"github.com/voxelbrain/goptions"
 	"os"
 )
@@ -115,11 +114,6 @@ func main() {
 
 	case "upload":
 		args := opts.Upload
-
-		// Set custom chunksize if given
-		if args.ChunkSize >= (1 << 18) {
-			googleapi.SetChunkSize(args.ChunkSize)
-		}
 
 		if args.Stdin {
 			err = cli.UploadStdin(drive, os.Stdin, args.Title, args.ParentId, args.Share, args.MimeType, args.Convert)

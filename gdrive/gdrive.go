@@ -1,10 +1,10 @@
 package gdrive
 
 import (
-	"github.com/prasmussen/google-api-go-client/drive/v2"
-	"github.com/prasmussen/gdrive/auth"
-	"github.com/prasmussen/gdrive/config"
-	"github.com/prasmussen/gdrive/util"
+    "google.golang.org/api/drive/v2"
+	"github.com/nguyentruongtho/gdrive/auth"
+	"github.com/nguyentruongtho/gdrive/config"
+	"github.com/nguyentruongtho/gdrive/util"
 	"net/http"
 	"path/filepath"
 )

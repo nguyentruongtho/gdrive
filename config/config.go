@@ -3,7 +3,7 @@ package config
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/prasmussen/gdrive/util"
+	"github.com/nguyentruongtho/gdrive/util"
 	"io/ioutil"
 )
 

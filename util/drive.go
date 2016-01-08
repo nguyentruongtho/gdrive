@@ -2,7 +2,7 @@ package util
 
 import (
 	"fmt"
-	"github.com/prasmussen/google-api-go-client/drive/v2"
+    "google.golang.org/api/drive/v2"
 	"strings"
 )
 

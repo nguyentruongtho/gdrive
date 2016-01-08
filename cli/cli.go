@@ -2,15 +2,15 @@ package cli
 
 import (
 	"fmt"
-	"github.com/prasmussen/gdrive/gdrive"
-	"github.com/prasmussen/gdrive/util"
-	"github.com/prasmussen/google-api-go-client/drive/v2"
+	"github.com/nguyentruongtho/gdrive/gdrive"
+	"github.com/nguyentruongtho/gdrive/util"
 	"golang.org/x/net/context"
 	"io"
 	"mime"
 	"os"
 	"path/filepath"
 	"strings"
+     "google.golang.org/api/drive/v2"
 )
 
 // List of google docs mime types excluding vnd.google-apps.folder
