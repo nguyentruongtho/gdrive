@@ -507,3 +507,12 @@ func isShared(d *gdrive.Drive, fileId string) bool {
 	}
 	return false
 }
+
+func EmptyTrash(d *gdrive.Drive) error {
+	err := d.Files.EmptyTrash().Do()
+	if err != nil {
+		return fmt.Errorf("An error occurred: %v\n", err)
+	}
+	print("Trash is emptied")
+	return nil
+}
