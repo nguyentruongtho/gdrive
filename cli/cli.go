@@ -32,56 +32,9 @@ var googleMimeTypes = []string{
 }
 
 func List(d *gdrive.Drive, query, titleFilter string, maxResults int, sharedStatus, noHeader, includeDocs, sizeInBytes bool) error {
-	caller := d.Files.List()
-	queryList := []string{}
-
-	if maxResults > 0 {
-		caller.MaxResults(int64(maxResults))
-	}
-
-	if titleFilter != "" {
-		q := fmt.Sprintf("title contains '%s'", titleFilter)
-		queryList = append(queryList, q)
-	}
-
-	if query != "" {
-		queryList = append(queryList, query)
-	} else {
-		// Skip trashed files
-		queryList = append(queryList, "trashed = false")
-
-		// Skip google docs
-		if !includeDocs {
-			for _, mime := range googleMimeTypes {
-				q := fmt.Sprintf("mimeType != '%s'", mime)
-				queryList = append(queryList, q)
-			}
-		}
-	}
-
-	if len(queryList) > 0 {
-		q := strings.Join(queryList, " and ")
-		caller.Q(q)
-	}
-
-	list, err := caller.Do()
+	files, err := queryAll(d, query, titleFilter, maxResults, includeDocs)
 	if err != nil {
 		return err
-	}
-
-	files := list.Items
-
-	for list.NextPageToken != "" {
-		if maxResults > 0 && len(files) > maxResults {
-			break
-		}
-
-		caller.PageToken(list.NextPageToken)
-		list, err = caller.Do()
-		if err != nil {
-			return err
-		}
-		files = append(files, list.Items...)
 	}
 
 	items := make([]map[string]string, 0, 0)
@@ -515,4 +468,63 @@ func EmptyTrash(d *gdrive.Drive) error {
 	}
 	print("Trash is emptied")
 	return nil
+}
+
+func DeleteAll(d *gdrive.Drive, query, titleFilter string, maxResults int, includeDocs bool) error {
+	files, err := queryAll(d, query, titleFilter, maxResults, includeDocs)
+	if err != nil {
+		return err
+	}
+
+	for _, f := range files {
+		Delete(d, f.Id)
+	}
+	return nil
+}
+
+func queryAll(d *gdrive.Drive, query, titleFilter string, maxResults int, includeDocs bool) ([]*drive.File, error) {
+	caller := d.Files.List()
+	queryList := []string{}
+
+	if maxResults > 0 {
+		caller.MaxResults(int64(maxResults))
+	}
+
+	if titleFilter != "" {
+		q := fmt.Sprintf("title contains '%s'", titleFilter)
+		queryList = append(queryList, q)
+	}
+
+	if query != "" {
+		queryList = append(queryList, query)
+	}
+
+	if len(queryList) > 0 {
+		q := strings.Join(queryList, " and ")
+		caller.Q(q)
+	} else {
+		return nil, fmt.Errorf("Need some query!")
+	}
+
+	list, err := caller.Do()
+	if err != nil {
+		return nil, err
+	}
+
+	files := list.Items
+
+	for list.NextPageToken != "" {
+		if maxResults > 0 && len(files) > maxResults {
+			break
+		}
+
+		caller.PageToken(list.NextPageToken)
+		list, err = caller.Do()
+		if err != nil {
+			return nil, err
+		}
+		files = append(files, list.Items...)
+	}
+
+	return files, nil
 }
