@@ -2,7 +2,7 @@ package util
 
 import (
 	"fmt"
-    "google.golang.org/api/drive/v2"
+    "github.com/nguyentruongtho/gdrive/Godeps/_workspace/src/google.golang.org/api/drive/v2"
 	"strings"
 )
 

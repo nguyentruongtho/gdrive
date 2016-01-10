@@ -1,7 +1,7 @@
 package auth
 
 import (
-	"code.google.com/p/goauth2/oauth"
+	"github.com/nguyentruongtho/gdrive/Godeps/_workspace/src/code.google.com/p/goauth2/oauth"
 	"errors"
 	"fmt"
 	"github.com/nguyentruongtho/gdrive/util"

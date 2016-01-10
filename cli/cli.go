@@ -4,13 +4,13 @@ import (
 	"fmt"
 	"github.com/nguyentruongtho/gdrive/gdrive"
 	"github.com/nguyentruongtho/gdrive/util"
-	"golang.org/x/net/context"
+	"github.com/nguyentruongtho/gdrive/Godeps/_workspace/src/golang.org/x/net/context"
+	"github.com/nguyentruongtho/gdrive/Godeps/_workspace/src/google.golang.org/api/drive/v2"
 	"io"
 	"mime"
 	"os"
 	"path/filepath"
 	"strings"
-     "google.golang.org/api/drive/v2"
 )
 
 // List of google docs mime types excluding vnd.google-apps.folder

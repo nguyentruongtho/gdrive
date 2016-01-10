@@ -1,0 +1,32 @@
+{
+	"ImportPath": "github.com/nguyentruongtho/gdrive",
+	"GoVersion": "go1.5",
+	"Deps": [
+		{
+			"ImportPath": "code.google.com/p/goauth2/oauth",
+			"Comment": "weekly-57",
+			"Rev": "'222e66a2882ef45c3153c86c0aa82fe65fc29a78'"
+		},
+		{
+			"ImportPath": "github.com/voxelbrain/goptions",
+			"Comment": "2.5.11",
+			"Rev": "26cb8b04692384f4dc269de3b5fcf3e2ef78573e"
+		},
+		{
+			"ImportPath": "golang.org/x/net/context",
+			"Rev": "f1d3149ecb40ffadf4a28d39a30f9a125fe57bdf"
+		},
+		{
+			"ImportPath": "google.golang.org/api/drive/v2",
+			"Rev": "77e7d383beb96054547729f49c372b3d01e196ff"
+		},
+		{
+			"ImportPath": "google.golang.org/api/gensupport",
+			"Rev": "77e7d383beb96054547729f49c372b3d01e196ff"
+		},
+		{
+			"ImportPath": "google.golang.org/api/googleapi",
+			"Rev": "77e7d383beb96054547729f49c372b3d01e196ff"
+		}
+	]
+}

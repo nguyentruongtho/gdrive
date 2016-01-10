@@ -1,7 +1,7 @@
 package gdrive
 
 import (
-    "google.golang.org/api/drive/v2"
+    "github.com/nguyentruongtho/gdrive/Godeps/_workspace/src/google.golang.org/api/drive/v2"
 	"github.com/nguyentruongtho/gdrive/auth"
 	"github.com/nguyentruongtho/gdrive/config"
 	"github.com/nguyentruongtho/gdrive/util"
